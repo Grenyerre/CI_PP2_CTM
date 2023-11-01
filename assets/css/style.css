@@ -82,6 +82,12 @@ h1 {
     padding-top: 75%;
     /* To maintain a 4:3 aspect ration */
     border: 3px solid;
+}
+
+#game-image-content {
+    width: auto;
+    max-width: 100%;
+    height: auto;
     display: block;
     /* Ensures the image is treated as a block element */
     margin: 0 auto;
