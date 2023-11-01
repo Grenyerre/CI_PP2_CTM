@@ -94,11 +94,13 @@ function checkOutcome() {
         outcome.gameState.innerHTML = `You pounced ${catDirection} and mouse chose ${mouseLocation}. Better luck next time!`;
         computerScore.innerHTML = escaped;
     }
+
+    return outcome;
 }
 document.getElementById("left").disabled = true;
 document.getElementById("middle").disabled = true;
 document.getElementById("right").disabled = true;
-return outcome;
+
 
 /* Check whether 5 attempts have been made. */
 function checkGameEnd() {
