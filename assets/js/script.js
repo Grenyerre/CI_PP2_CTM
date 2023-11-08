@@ -1,33 +1,26 @@
-const controlButtons = document.querySelectorAll("control-button");
-const gameState = document.querySelector("gameState");
-const playerScore = document.getElementById('player-score');
-const computerScore = document.getElementById('computer-score');
-const musicButton = document.getElementById('music-button');
-const audio = document.querySelector("audio");
+const controlButtons = document.querySelectorAll(".control-button");
+const gameState = document.getElementById("game-state");
+const playerScore = document.getElementById("player-score");
+const computerScore = document.getElementById("computer-score");
+const musicButton = document.getElementById("music-button");
+const userName = document.getElementById("user-name");
+const soundtrack = document.getElementById("soundtrack");
+const meow = document.getElementById("meow");
+const purr = document.getElementById("purr");
 
 let catDirection;
 let mouseLocation;
 let eaten = 0;
 let escaped = 0;
-let gameImg = document.getElementById("game-image");
-let instructionsButton = document.getElementById("instructions-button");
-let instructionsBox = document.querySelector("instructions-box");
-let closeInstructionsButton = document.querySelector("close-instructions-button");
+let gameImage = document.getElementById("game-image");
+
+var instructionsBox = document.getElementById("instructions-box");
+var instructionsButton = document.getElementById("instructions-button");
+let closeInstructionsButton = document.getElementById("close-instructions-button");
+
 let restartButton = document.getElementById("restart-button");
 
-/* Music & FX settings*/
-musicButton.addEventListener("click", function () {
-    if (audio.paused) {
-        audio.volume = 0.2;
-        audio.play();
-        musicButton.innerHTML = "Mute Music & FX";
-    } else {
-        audio.pause();
-        musicButton.innerHTML = "Play Music & FX";
-    }
-});
-
-/** Modal box settings */
+/** Modal box settings - adapted from w3schools.com */
 instructionsButton.addEventListener("click", function () {
     instructionsBox.style.display = "block";
 });
@@ -42,19 +35,22 @@ window.addEventListener("click", function (e) {
     }
 });
 
+/* Music & FX settings*/
+musicButton.addEventListener("click", function () {
+    if (soundtrack.paused) {
+        soundtrack.volume = 0.2;
+        soundtrack.play();
+        musicButton.innerHTML = "Mute Music";
+    } else {
+        soundtrack.pause();
+        musicButton.innerHTML = "Play Music";
+    }
+});
+
 /* Reset button */
 restartButton.addEventListener("click", function () {
     location.reload();
 });
-
-
-/* Take the player's chosen direction and call the computer choice function */
-controlButtons.forEach(button => button.addEventListener("click", function () {
-    catDirection = button.textContent;
-    generateMouseLocation();
-    gameState.textContent = checkOutcome();
-    checkGameEnd();
-}));
 
 /* Generate random number to determine from which hole the mouse appears. */
 function generateMouseLocation() {
@@ -73,55 +69,66 @@ function generateMouseLocation() {
     }
 }
 
-/**
- * Check both player and computer choices and determine whether the mouse
- * escaped or was eaten. Alter game image accordingly and increment relevant score.
- */
-function checkOutcome() {
 
-    let outcome = "";
+/* Take the player's chosen direction and the computer's mouse location */
+/* Enter choices into checkOutcome function */
+controlButtons.forEach((button => button.addEventListener("click", function () {
+    catDirection = button.textContent;
+    generateMouseLocation();
+    checkResult(catDirection, mouseLocation);
+})
 
-    const userPlayImg = `assets/images/cat_${catDirection}_mouse_${mouseLocation}.png`;
+/* Compare player and computer choices */
+/* Determine whether the mouse escaped or was eaten */
+/* Alter game image accordingly and increment relevant score */
+function checkResult(catDirection, mouseLocation) {
+        let outcome = "";
 
-    if (catDirection === mouseLocation) {
-        eaten++;
-        gameImg.src = userPlayImg;
-        outcome.gameState.innerHTML = `You pounced ${catDirection} and the mouse chose ${mouseLocation}. Yum yum!`;
-        playerScore.innerHTML = eaten;
-    } else {
-        escaped++;
-        gameImg.src = userPlayImg;
-        outcome.gameState.innerHTML = `You pounced ${catDirection} and mouse chose ${mouseLocation}. Better luck next time!`;
-        computerScore.innerHTML = escaped;
+        let gameImage = `assets/images/cat_${catDirection}_mouse_${mouseLocation}.png`;
+
+        if (catDirection === mouseLocation) {
+            eaten++;
+            gameImage.src = gameImage;
+            outcome.gameState.innerHTML = `You pounced ${catDirection} and the mouse chose ${mouseLocation}. Yum yum!`;
+            playerScore.innerHTML = eaten;
+            function playAudio() {
+                purr.play();
+            }
+        } else {
+            escaped++;
+            gameImage.src = gameImage;
+            outcome.gameState.innerHTML = `You pounced ${catDirection} and mouse chose ${mouseLocation}. Better luck next time!`;
+            computerScore.innerHTML = escaped;
+            function playAudio() {
+                meow.play();
+            }
+        }
+
+        return outcome;
     }
 
-    return outcome;
-}
-document.getElementById("left").disabled = true;
-document.getElementById("middle").disabled = true;
-document.getElementById("right").disabled = true;
-
-
-/* Check whether 5 attempts have been made. */
+/* Check whether 5 escape attempts have been made. */
 function checkGameEnd() {
-    if (eaten < 2) {
-        gameState.innerHTML = `I'm still hungry ${username}, feed me.`;
-        const userPlayImg = "assets/images/cat_still_hungry.png";
-        setTimeout(endGame, 3000);
-    } else if (eaten >= 2 && eaten <= 4 && escaped) {
-        gameState.innerHTML = `Well done ${username}, I'm almost full.`;
-        const userPlayImg = "assets/images/cat_loaf.png";
-        setTimeout(endGame, 3000);
-    } else {
-        gameState.innerHTML = `Amazing ${username}, I have achieved satiety.`;
-        const userPlayImg = "assets/images/cat_eats_mouse.png";
-        setTimeout(endGame, 3000);
-    }
-}
+        if (eaten < 2) {
+            gameState.innerHTML = `${userName} is still hungry, feed me.`;
+            const userPlayImg = "assets/images/cat_still_hungry.png";
+            setTimeout(endGame, 3000);
+        } else if (eaten >= 2 && eaten <= 4) {
+            gameState.innerHTML = `Well done ${userName}, you're almost full.`;
+            const userPlayImg = "assets/images/cat_full.png";
+            setTimeout(endGame, 3000);
+        } else {
+            gameState.innerHTML = `Amazing ${userName}, you have achieved satiety.`;
+            const userPlayImg = "assets/images/cat_eats_mouse.png";
+            setTimeout(endGame, 3000);
+        }
+    };
 
-/* Disable direction buttons when 5 mice have been released. */
+/* Disable direction buttons when 5 mice have been released */
 function endGame() {
     document.getElementById("left").disabled = true;
     document.getElementById("centre").disabled = true;
     document.getElementById("right").disabled = true;
-}
+
+    gameState.innerHTML = `${userName}, if you want to play again, please press 'Restart Game'`;
+};
