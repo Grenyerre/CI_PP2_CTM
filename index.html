@@ -18,44 +18,37 @@
 <body>
     <header>
         <div id="header">
-            <h1>
-                <img src="assets/images/favicon/favicon.ico" alt="A cartoon cat"></i> Catch The Mousie!
-                <img src="assets/images/favicon/mouse.ico" alt="A cartoon mouse"></i>
-            </h1>
+            <h1>Catch The Mousie!</h1>
         </div>
     </header>
 
     <main>
         <!--Game Instructions-->
         <section id="welcome-area">
-            <div id="welcome-instructions">
-                <h2>Welcome to Catch The Mousie!</h2>
-                <p>
-                    You are a hungry cat. <br />The 5 mice you are so desperate to eat
-                    can escape through one of 3 holes. <br />Choose from which hole you
-                    think each mouse will escape.
-                </p>
-            </div>
 
-            <form>
-                <p>Please enter your name.</p>
-                <label for="user-name">Name: </label>
-                <input autocomplete="off" type="text" name="user-name" id="user-name" required />
-                <input type="submit" value="Enter" />
-            </form>
+            <!-- Game Image section-->
+            <section id="welcome-image-area">
+                <img id="welcome-image" src="assets/images/cat_mouse_mouth.png"
+                    alt="cat sat infront of three small holes in the ground" />
 
-            <ul id="play-game">
-                <li><a href="game.html" class="active">Play Game</a></li>
-            </ul>
+                <div id="welcome-instructions">
+                    <h2>Welcome to Catch The Mousie!</h2>
+                    <p>
+                        You are a hungry cat. <br />The 5 mice you are so desperate to eat
+                        can escape through one of 3 holes. <br />Choose from which hole you
+                        think each mouse will escape.
+                    </p>
+                </div>
 
-        </section>
-
+                <a href="game.html" class="active">Play Game</a>
+            </section>
     </main>
 
     <footer>
         <div id="footer">
+            <p>Simon's Cat Copyright 2023 Simon Tofield.</p>
             <p>
-                Simon's Cat Copyright 2023 Simon Tofield. Developed by
+                Developed by
                 <a href="https://github.com/Grenyerre" target="_blank" rel="nofollow">R. E. Grenyer</a>
                 for Code Institute's Portfolio Project 2 - 11/2023
             </p>

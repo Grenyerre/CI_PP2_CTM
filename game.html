@@ -1,84 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A game of chance where you predict from which hole a mouse will escape." />
-    <meta name="keywords" content="chance, game, cat, mouse, mice, eat, cat and mouse game" />
+    <meta
+      name="description"
+      content="A game of chance where you predict from which hole a mouse will escape."
+    />
+    <meta
+      name="keywords"
+      content="chance, game, cat, mouse, mice, eat, cat and mouse game"
+    />
 
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/favicon/favicon-16x16.png"
+    />
 
     <title>Catch The Mousie Game</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!--Header-->
     <header>
-        <h1>Catch The Mousie!</h1>
+      <h1>Catch The Mousie!</h1>
     </header>
 
     <!--Game play area-->
     <main id="game-area">
-        <!--Modal box: Game Instructions-->
-        <aside id="instructions-box">
-            <div id="instructions-box-contents">
-                <h2>Welcome to Catch The Mousie!</h2>
-                <p>
-                    You are a hungry cat. <br />The 5 mice you are so desperate to eat
-                    can escape through one of 3 holes. <br />From which hole do you
-                    think each mouse will escape. <br />Choose carefully.
-                </p>
-                <button id="close-instructions-button">It's time to eat!</button>
-            </div>
-        </aside>
+      <!--Modal box: Game Instructions-->
+      <aside id="instructions-box">
+        <div id="instructions-box-contents">
+          <h2>Instructions for Catch The Mousie!</h2>
+          <p>
+            You are a hungry cat. <br />The 5 mice you are so desperate to eat
+            can escape through one of 3 holes. <br />Choose from which hole you
+            think each mouse will escape.
+          </p>
+          <button id="close-instructions-button">Close</button>
+        </div>
+      </aside>
 
-        <!--Settings section-->
-        <section id="settings-buttons-area">
-            <button class="settings-button" id="instructions-button">
-                Instructions
-            </button>
-            <button class="settings-button" id="music-button">Music</button>
-            <button class="settings-button" id="restart-button">
-                Restart Game
-            </button>
+      <!--Settings section-->
+      <section id="settings-buttons-area">
+        <button class="settings-button" id="instructions-button">
+          Instructions
+        </button>
+        <button class="settings-button" id="music-button">Music</button>
+        <button class="settings-button" id="restart-button">
+          Restart Game
+        </button>
+      </section>
+
+      <h2><span id="cat-name"></span></h2>
+
+      <!-- Game Image section-->
+      <section id="game-image-area">
+        <img
+          id="game-image"
+          src="assets/images/initial_game_image.png"
+          alt="cat sat infront of three small holes in the ground"
+        />
+
+        <section class="controls">
+          <button class="control-button" id="left">left</button>
+          <button class="control-button" id="centre">centre</button>
+          <button class="control-button" id="right">right</button>
         </section>
+      </section>
 
-        <!-- Game Image section-->
-        <section id="game-image-area">
-            <img id="game-image" src="assets/images/initial_game_image.png"
-                alt="cat sat infront of three small holes in the ground" />
+      <!-- Scores section-->
+      <section id="score-area">
+        <h2>
+          Eaten: <span id="player-score">0</span> Escaped:
+          <span id="computer-score">0</span>
+        </h2>
+      </section>
 
-            <section class="controls">
-                <button class="control-button" id="left">Left</button>
-                <button class="control-button" id="centre">Centre</button>
-                <button class="control-button" id="right">Right</button>
-            </section>
-        </section>
-
-        <!-- Scores section-->
-        <section id="score-area">
-            <h2>
-                Eaten: <span id="player-score">0</span> Escaped:
-                <span id="computer-score">0</span>
-            </h2>
-        </section>
-
-        <!-- Game Prompts section-->
-        <h2><span id="game-state">Choose a hole and pounce!</span></h2>
+      <!-- Game Prompts section-->
+      <h2><span id="game-state">Choose a hole and pounce!</span></h2>
     </main>
 
     <footer>
-        <div id="footer">
-            <p>
-                Simon's Cat Copyright 2023 Simon Tofield. Developed by
-                <a href="https://github.com/Grenyerre" target="_blank" rel="nofollow">R. E. Grenyer</a>
-                for Code Institute's Portfolio Project 2 - 11/2023
-            </p>
-        </div>
+      <div id="footer">
+        <p>
+          Simon's Cat Copyright 2023 Simon Tofield. Developed by
+          <a href="https://github.com/Grenyerre" target="_blank" rel="nofollow"
+            >R. E. Grenyer</a
+          >
+          for Code Institute's Portfolio Project 2 - 11/2023
+        </p>
+      </div>
     </footer>
 
     <audio id="soundtrack" src="assets/audio/soundtrack.mp3" loop></audio>
@@ -86,6 +112,5 @@
     <audio id="purr" src="assets/audio/purr.mp3" loop></audio>
 
     <script src="assets/js/script.js"></script>
-</body>
-
+  </body>
 </html>
